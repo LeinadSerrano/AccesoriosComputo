@@ -1,0 +1,328 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="AccesoriosModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Accesorio">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="strNombre" Type="varchar" MaxLength="50" />
+          <Property Name="strColor" Type="varchar" MaxLength="50" />
+          <Property Name="idMarca" Type="int" />
+          <Property Name="idModelo" Type="int" />
+          <Property Name="idCategoria" Type="int" />
+          <Property Name="idMaterial" Type="int" />
+        </EntityType>
+        <EntityType Name="Categoria">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="strNombre" Type="varchar" MaxLength="50" />
+          <Property Name="strDescripcion" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Marca">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="strNombre" Type="varchar" MaxLength="50" />
+          <Property Name="strDescripcion" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Material">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="strNombre" Type="varchar" MaxLength="50" />
+          <Property Name="strDescripcion" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Modelo">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="strNombre" Type="varchar" MaxLength="50" />
+          <Property Name="strDescripcion" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_Accesorio_Categoria">
+          <End Role="Categoria" Type="Self.Categoria" Multiplicity="0..1" />
+          <End Role="Accesorio" Type="Self.Accesorio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categoria">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Accesorio">
+              <PropertyRef Name="idCategoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Accesorio_Marca">
+          <End Role="Marca" Type="Self.Marca" Multiplicity="0..1" />
+          <End Role="Accesorio" Type="Self.Accesorio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Marca">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Accesorio">
+              <PropertyRef Name="idMarca" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Accesorio_Material">
+          <End Role="Material" Type="Self.Material" Multiplicity="0..1" />
+          <End Role="Accesorio" Type="Self.Accesorio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Material">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Accesorio">
+              <PropertyRef Name="idMaterial" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Accesorio_Modelo">
+          <End Role="Modelo" Type="Self.Modelo" Multiplicity="0..1" />
+          <End Role="Accesorio" Type="Self.Accesorio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Modelo">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Accesorio">
+              <PropertyRef Name="idModelo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="AccesoriosModelStoreContainer">
+          <EntitySet Name="Accesorio" EntityType="Self.Accesorio" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Categoria" EntityType="Self.Categoria" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Marca" EntityType="Self.Marca" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Material" EntityType="Self.Material" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Modelo" EntityType="Self.Modelo" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Accesorio_Categoria" Association="Self.FK_Accesorio_Categoria">
+            <End Role="Categoria" EntitySet="Categoria" />
+            <End Role="Accesorio" EntitySet="Accesorio" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Accesorio_Marca" Association="Self.FK_Accesorio_Marca">
+            <End Role="Marca" EntitySet="Marca" />
+            <End Role="Accesorio" EntitySet="Accesorio" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Accesorio_Material" Association="Self.FK_Accesorio_Material">
+            <End Role="Material" EntitySet="Material" />
+            <End Role="Accesorio" EntitySet="Accesorio" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Accesorio_Modelo" Association="Self.FK_Accesorio_Modelo">
+            <End Role="Modelo" EntitySet="Modelo" />
+            <End Role="Accesorio" EntitySet="Accesorio" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="AccesoriosModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Accesorio">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="strNombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="strColor" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="idMarca" Type="Int32" />
+          <Property Name="idModelo" Type="Int32" />
+          <Property Name="idCategoria" Type="Int32" />
+          <Property Name="idMaterial" Type="Int32" />
+          <NavigationProperty Name="Categoria" Relationship="Self.FK_Accesorio_Categoria" FromRole="Accesorio" ToRole="Categoria" />
+          <NavigationProperty Name="Marca" Relationship="Self.FK_Accesorio_Marca" FromRole="Accesorio" ToRole="Marca" />
+          <NavigationProperty Name="Material" Relationship="Self.FK_Accesorio_Material" FromRole="Accesorio" ToRole="Material" />
+          <NavigationProperty Name="Modelo" Relationship="Self.FK_Accesorio_Modelo" FromRole="Accesorio" ToRole="Modelo" />
+        </EntityType>
+        <EntityType Name="Categoria">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="strNombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="strDescripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Accesorio" Relationship="Self.FK_Accesorio_Categoria" FromRole="Categoria" ToRole="Accesorio" />
+        </EntityType>
+        <EntityType Name="Marca">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="strNombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="strDescripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Accesorio" Relationship="Self.FK_Accesorio_Marca" FromRole="Marca" ToRole="Accesorio" />
+        </EntityType>
+        <EntityType Name="Material">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="strNombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="strDescripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Accesorio" Relationship="Self.FK_Accesorio_Material" FromRole="Material" ToRole="Accesorio" />
+        </EntityType>
+        <EntityType Name="Modelo">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="strNombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="strDescripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Accesorio" Relationship="Self.FK_Accesorio_Modelo" FromRole="Modelo" ToRole="Accesorio" />
+        </EntityType>
+        <Association Name="FK_Accesorio_Categoria">
+          <End Role="Categoria" Type="Self.Categoria" Multiplicity="0..1" />
+          <End Role="Accesorio" Type="Self.Accesorio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categoria">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Accesorio">
+              <PropertyRef Name="idCategoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Accesorio_Marca">
+          <End Role="Marca" Type="Self.Marca" Multiplicity="0..1" />
+          <End Role="Accesorio" Type="Self.Accesorio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Marca">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Accesorio">
+              <PropertyRef Name="idMarca" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Accesorio_Material">
+          <End Role="Material" Type="Self.Material" Multiplicity="0..1" />
+          <End Role="Accesorio" Type="Self.Accesorio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Material">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Accesorio">
+              <PropertyRef Name="idMaterial" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Accesorio_Modelo">
+          <End Role="Modelo" Type="Self.Modelo" Multiplicity="0..1" />
+          <End Role="Accesorio" Type="Self.Accesorio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Modelo">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Accesorio">
+              <PropertyRef Name="idModelo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="AccesoriosEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Accesorio" EntityType="Self.Accesorio" />
+          <EntitySet Name="Categoria" EntityType="Self.Categoria" />
+          <EntitySet Name="Marca" EntityType="Self.Marca" />
+          <EntitySet Name="Material" EntityType="Self.Material" />
+          <EntitySet Name="Modelo" EntityType="Self.Modelo" />
+          <AssociationSet Name="FK_Accesorio_Categoria" Association="Self.FK_Accesorio_Categoria">
+            <End Role="Categoria" EntitySet="Categoria" />
+            <End Role="Accesorio" EntitySet="Accesorio" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Accesorio_Marca" Association="Self.FK_Accesorio_Marca">
+            <End Role="Marca" EntitySet="Marca" />
+            <End Role="Accesorio" EntitySet="Accesorio" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Accesorio_Material" Association="Self.FK_Accesorio_Material">
+            <End Role="Material" EntitySet="Material" />
+            <End Role="Accesorio" EntitySet="Accesorio" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Accesorio_Modelo" Association="Self.FK_Accesorio_Modelo">
+            <End Role="Modelo" EntitySet="Modelo" />
+            <End Role="Accesorio" EntitySet="Accesorio" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="AccesoriosModelStoreContainer" CdmEntityContainer="AccesoriosEntities">
+          <EntitySetMapping Name="Accesorio">
+            <EntityTypeMapping TypeName="AccesoriosModel.Accesorio">
+              <MappingFragment StoreEntitySet="Accesorio">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="strNombre" ColumnName="strNombre" />
+                <ScalarProperty Name="strColor" ColumnName="strColor" />
+                <ScalarProperty Name="idMarca" ColumnName="idMarca" />
+                <ScalarProperty Name="idModelo" ColumnName="idModelo" />
+                <ScalarProperty Name="idCategoria" ColumnName="idCategoria" />
+                <ScalarProperty Name="idMaterial" ColumnName="idMaterial" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Categoria">
+            <EntityTypeMapping TypeName="AccesoriosModel.Categoria">
+              <MappingFragment StoreEntitySet="Categoria">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="strNombre" ColumnName="strNombre" />
+                <ScalarProperty Name="strDescripcion" ColumnName="strDescripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Marca">
+            <EntityTypeMapping TypeName="AccesoriosModel.Marca">
+              <MappingFragment StoreEntitySet="Marca">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="strNombre" ColumnName="strNombre" />
+                <ScalarProperty Name="strDescripcion" ColumnName="strDescripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Material">
+            <EntityTypeMapping TypeName="AccesoriosModel.Material">
+              <MappingFragment StoreEntitySet="Material">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="strNombre" ColumnName="strNombre" />
+                <ScalarProperty Name="strDescripcion" ColumnName="strDescripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Modelo">
+            <EntityTypeMapping TypeName="AccesoriosModel.Modelo">
+              <MappingFragment StoreEntitySet="Modelo">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="strNombre" ColumnName="strNombre" />
+                <ScalarProperty Name="strDescripcion" ColumnName="strDescripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
